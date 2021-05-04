@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 50px;
   pointer-events: none;
 }
 
@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,60 @@
   to {
     transform: rotate(360deg);
   }
+}
+.editor, .editor * {
+  margin: 0;
+  padding: 0;
+  font-size: 12pt;
+  line-height: 15px;
+  text-align: left;
+  word-break: break-all;
+  font-family: monospace;
+}
+.editor {
+  position: absolute;
+  border: 1px solid #fff;
+  background: none;
+}
+#editor_container, .editor {
+  width: 500px;
+  height: 100px;
+}
+#editor_container {
+  display: grid;
+  grid-template: 1fr/ 1fr;
+  margin: auto;
+}
+#fake_editor {
+  color: transparent;
+  z-index: -1;
+  overflow: hidden;
+}
+.fake_content {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-end;
+  max-height: 100px;
+}
+.overflow_content {
+  background: red;
+}
+.checkbox_false::before {
+  content: "X ";
+}
+.checkbox_true::before {
+  content: "V ";
+}
+.setting {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid red;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: space-between;
+  justify-content: space-evenly;
+}
+.setting * {
+  width: fit-content;
+  border: 1px solid red;
 }

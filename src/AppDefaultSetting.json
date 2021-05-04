@@ -1,0 +1,11 @@
+{
+    "max_length": 100,
+    "cur_length": 0,
+    "content": {"all": "", "safe": [], "overflow": []},
+    "includePunctuation": true,
+    "includeSpace": false,
+    "includeEnter": false,
+    "each_counts": {"char": 0, "space": 0, "enter": 0, "punctuation": 0},
+    "fake_editor": null,
+    "punctuationList": "，！？；：（）［］【】。、‧«»,`.:'\";~!?『』「」﹁﹂《…》〈〉[]{}()/*$"
+}
