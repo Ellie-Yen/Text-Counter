@@ -1,6 +1,0 @@
-This favicon was generated using the following font:
-
-- Font Title: Vollkorn SC
-- Font Author: Copyright 2017 The Vollkorn Project Authors (https://github.com/FAlthausen/Vollkorn-Typeface)
-- Font Source: http://fonts.gstatic.com/s/vollkornsc/v6/j8_v6-zQ3rXpceZj9cqnVhF5NH-iSq_E.ttf
-- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL)
