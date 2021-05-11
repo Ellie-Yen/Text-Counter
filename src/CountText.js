@@ -1,13 +1,13 @@
 import {default as dState} from './AppDefaultSetting.json';
 
-function CountText(content, max_length, puncList,
-        includePunctuation, includeSpace, includeEnter){
+function CountText(content, max_length, symbolList,
+include_symbol, include_enter, include_space){
 
     const each_counts = Object.assign({}, dState.each_counts);
     let cur_length = 0;
-    const cnt_punc = includePunctuation ? 1: 0;
-    const cnt_space = includeSpace ? 1: 0;
-    const cnt_enter = includeEnter ? 1: 0;
+    const cnt_symbol = include_symbol ? 1: 0;
+    const cnt_space = include_space ? 1: 0;
+    const cnt_enter = include_enter ? 1: 0;
 
     // record from where is overflow
     // and add <br> for newline or "_" for spaceholder if necessary
@@ -16,9 +16,9 @@ function CountText(content, max_length, puncList,
 
     function Helper(i, store){
         let addChar = content[i];
-        if (puncList.includes(content[i])){
-            each_counts.punctuation ++;
-            cur_length += cnt_punc;
+        if (symbolList.includes(content[i])){
+            each_counts.symbol ++;
+            cur_length += cnt_symbol;
         }
         else {
             switch (content.charCodeAt(i)){

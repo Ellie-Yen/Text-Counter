@@ -1,11 +1,29 @@
 {
-    "max_length": 100,
+    "project_title": "Text Counter",
+    "project_description": "You can choose whether space, enter or symbols should be count or not.",
+    "restrict": 100,
     "cur_length": 0,
-    "content": {"all": "", "safe": [], "overflow": []},
-    "includePunctuation": true,
-    "includeSpace": false,
-    "includeEnter": false,
-    "each_counts": {"char": 0, "space": 0, "enter": 0, "punctuation": 0},
-    "fake_editor": null,
-    "punctuationList": "，！？；：（）［］【】。、‧«»,`.:'\";~!?『』「」﹁﹂《…》〈〉[]{}()/*$"
+    "content": {
+        "all": "", 
+        "safe": [], 
+        "overflow": []
+    },
+    "include_symbol": true,
+    "include_space": false,
+    "include_enter": false,
+    "each_counts": {
+        "char": 0,
+        "space": 0,
+        "enter": 0,
+        "symbol": 0
+    },
+    "symbolList": "，！？；：（）［］【】。、‧«»,`.:'\";~!?『』「」﹁﹂《…》〈〉[]{}()/*$",
+    "darktheme": {
+        "background": "rgb(40, 45, 55)",
+        "color": "rgb(180, 189, 199)"
+    },
+    "lighttheme": {
+        "background": "rgb(247, 247, 237)",
+        "color": "rgb(95, 117, 101)"
+    }
 }

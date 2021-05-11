@@ -1,0 +1,91 @@
+
+.detailbtn, .msg_btn, .edit_btn, .btn_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    -ms-flex-line-pack: center;
+}
+.msg_btn, .edit_btn, .btn_container {
+    flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+}
+.detailbtn {
+    flex-flow: column wrap;
+    -ms-flex-flow: column wrap;
+}
+
+/*----------- for detail buttons -----------*/
+.detailbtn * {
+    display: block;
+    padding: 0px 5px;
+}
+/* blur secondary details */
+.detailbtn small, .detailbtn:hover i {
+    height: 0px;
+    color: transparent;
+}
+.detailbtn:hover small, .detailbtn i {
+    color: inherit;
+    height: auto;
+}
+
+/*----------- for checkbox buttons -----------*/
+.checked_false {
+    filter: opacity(0.5);
+}
+/* add strike-line in unchecked button */
+.checked_false::before {
+    content: "\00A0";
+    position: absolute;
+    display: block;
+    line-height: 200%;
+    width: 0px;
+    z-index: 1;
+    transform: rotate(-45deg) translateX(50%);
+    border: 1px solid;
+}
+
+/*----------- for msg buttons -----------*/
+/* hide pop msg at initialization */
+.msg {
+    display: none;
+    position: absolute;
+    transform: translateY(-60%);
+    z-index: 2;
+}
+.msg_btn:hover .msg {
+    display: inline-block;
+    -webkit-animation: 2s ease 2s 1 normal forwards running fadeOut;
+    -moz-animation: 2s ease 2s 1 normal forwards running fadeOut;
+    animation: 2s ease 2s 1 normal forwards running fadeOut;
+}
+/* make it looks like a dialog */
+.msg p {
+    margin: 0;
+    padding: 5px;
+    background: var(--main_color1);
+    color: var(--seco_color);
+}
+.msg::after {
+    display: block;
+	content: "\00A0";
+	font-size: 0pt;
+    margin: 0 50%;
+	border-style: solid;
+	border-color: var(--main_color1) transparent transparent transparent;
+	border-width: 15px 5px 0px 5px;
+}
+
+/*----------- for edit buttons -----------*/
+.edit_input {
+    position:absolute;
+    transform: translateY(100%);
+    background: var(--main_color1);
+    color: var(--seco_color);
+    border: 1px solid var(--seco_color);
+}
+.btn_container {
+    width: fit-content;
+    gap: 5px;
+}

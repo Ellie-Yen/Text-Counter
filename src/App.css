@@ -1,94 +1,66 @@
-.App {
-  text-align: center;
+:root {
+  --main_color1: rgb(46, 101, 182);
+  --main_color2: rgba(235, 94, 148, 0.66);
+  --seco_color: rgb(247, 247, 237);
+  --normal_size: calc(10px + 2vmin);
+  --small_size: calc(6px + 2vmin);
+  --big_size: calc(15px + 2vmin);
+}
+@keyframes fadeOut {
+  0%{ filter: opacity(0.5); }
+  100%{ filter: opacity(0); }
+}
+@-webkit-keyframes fadeOut {
+  0%{ filter: opacity(0.5); }
+  100%{ filter: opacity(0); }
+}
+@-moz-keyframes fadeOut {
+  0%{ filter: opacity(0.5); }
+  100%{ filter: opacity(0); }
 }
 
-.App-logo {
-  height: 50px;
-  pointer-events: none;
-}
+:not(small), input, textarea { font-size: var(--normal_size); }
+small { font-size: var(--small_size); }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 10vh;
+.App, .container {
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  -ms-flex-flow: row wrap;
+  -ms-flex-pack: distribute;
+  -ms-flex-line-pack: center;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.editor, .editor * {
-  margin: 0;
-  padding: 0;
-  font-size: 12pt;
-  line-height: 15px;
-  text-align: left;
-  word-break: break-all;
-  font-family: monospace;
-}
-.editor {
-  position: absolute;
-  border: 1px solid #fff;
-  background: none;
-}
-#editor_container, .editor {
-  width: 500px;
-  height: 100px;
-}
-#editor_container {
-  display: grid;
-  grid-template: 1fr/ 1fr;
-  margin: auto;
-}
-#fake_editor {
-  color: transparent;
-  z-index: -1;
-  overflow: hidden;
-}
-.fake_content {
-  display: flex;
-  flex-flow: row wrap;
-  align-content: flex-end;
-  max-height: 100px;
-}
-.overflow_content {
-  background: red;
-}
-.checkbox_false::before {
-  content: "X ";
-}
-.checkbox_true::before {
-  content: "V ";
-}
-.setting {
+.App { padding: 20px 20vw; }
+.container { 
+  margin: 5px 0;
   width: 100%;
+  gap: 5px;
+}
+#App_header h1 {
+  color: var(--seco_color);
+  background: var(--main_color1);
   padding: 5px;
-  border: 1px solid red;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: space-between;
-  justify-content: space-evenly;
 }
-.setting * {
-  width: fit-content;
-  border: 1px solid red;
+#App_header p {
+  width: 70%;
+  text-align: justify;
 }
+#setting_container {
+  align-items: stretch;
+  -ms-flex-line-pack: stretch;
+}
+
+
+.btn {
+  cursor: pointer;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
+}
+.btn:hover {
+  outline: 1px solid var(--main_color1);
+  border: 1px solid var(--seco_color);
+}
+.btn_primary:hover, .btn_danger:hover { color: var(--seco_color); }
+.btn_primary:hover { background: var(--main_color1); }
+.btn_danger:hover { background: var(--main_color2); }

@@ -1,0 +1,35 @@
+.text {
+  align-self: stretch;
+  justify-self: stretch;
+  width: calc(60vw - var(--normal_size));
+  background: none;
+  overflow-y: scroll;
+  text-align: left;
+  word-break: break-all;
+  font-family: monospace;
+  line-height: var(--normal_size);
+}
+
+/* makes the contents are completely overlapped */
+/* different bc difference between div and text area */
+#true_text {
+  position: absolute;
+  z-index: 1;
+  height: calc(50vh + var(--normal_size));
+  padding: 5px 0px 5px 5px;
+}
+#fake_text {
+  height: 50vh;
+  padding: 5px 5px calc(var(--normal_size) + 5px) 5px;
+}
+/* hide content of fake text */
+#fake_text * {
+  color: transparent;
+  margin: 0;
+  padding: 0;
+}
+/* highlight setting */
+.overflow_content {
+  background: var(--main_color2);
+  filter: opacity(0.5);
+}

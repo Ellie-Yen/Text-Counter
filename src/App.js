@@ -1,30 +1,32 @@
-import logo from './logo.svg';
 import React from 'react';
 import {default as dState} from './AppDefaultSetting.json';
-import './App.css';
 import CountText from './CountText';
-import EditorContainer from './EditorContainer';
-import {DetailButton, CheckBoxButton} from './SettingButton';
+import LengthComponent from './templates/LengthComponent';
+import TextContainer from './templates/TextContainer';
+import {DetailBtn, CheckBoxBtn, EditBtn} from './templates/ButtonComponent';
+import './App.css';
 
 
 function App() {
-  
+  // text settings
   const [content, setContent] = React.useState(dState.content);
   const [cur_length, setCurLength] = React.useState(dState.cur_length);
   const [each_counts, setEachCounts] = React.useState(dState.each_counts);
   
   // editor settings
-  const [max_length, setMaxLength] = React.useState(dState.max_length);
-  const [puncList, setPuncList] = React.useState(dState.punctuationList);
-  const [includePunctuation, setIncludePunc] = React.useState(dState.includePunctuation);
-  const [includeSpace, setIncludeSp] = React.useState(dState.includeSpace);
-  const [includeEnter, setIncludeEn] = React.useState(dState.includeEnter);
+  const [restrict, setRestrict] = React.useState(dState.restrict);
+  const [symbolList, setSymbolList] = React.useState(dState.symbolList);
+  const [include_symbol, setIncludeSymbol] = React.useState(dState.include_symbol);
+  const [include_enter, setIncludeEnter] = React.useState(dState.include_enter);
+  const [include_space, setIncludeSpace] = React.useState(dState.include_space);
   
-  
+  // color theme settings 
+  const [theme, setTheme] = React.useState(dState.lighttheme);
+
   const RecountText = (newcontent) => {
     const [newCounts, newLength, newSafe, newOverflow] = 
-      CountText(newcontent, max_length, puncList,
-                 includePunctuation, includeSpace, includeEnter);
+      CountText(newcontent, restrict, symbolList, 
+        include_symbol, include_enter, include_space);
     setEachCounts(newCounts);
     setCurLength(newLength);
     setContent({
@@ -36,24 +38,20 @@ function App() {
   const handleTextInput = (event)=>{
     RecountText(event.target.value);
   };
-  const handleMaxLength = (val)=>{
+  const handleRestrict = (val)=>{
     if (/[0123456789]+/.test(val)){
       const res = Math.min(Math.max(parseInt(val), 1), 1000);
-      setMaxLength(res);
+      setRestrict(res);
     }
   }
-  const handlePuncList = (s) => {
+  const handleSymbolList = (s) => {
     if (s === ""){
-      return;
+      const valid = window.confirm("are you sure no symbol ?");
+      if (! valid){
+        return;
+      }
     }
-    setPuncList(s.substring(50));
-  }
-  const Reset = () => {
-    setMaxLength(dState.max_length);
-    setPuncList(dState.punctuationList);
-    setIncludeSp(dState.includeSpace);
-    setIncludePunc(dState.includePunctuation);
-    setIncludeEn(dState.includeEnter);
+    setSymbolList(s.substring(0, 50));
   }
   const Refresh = () => {
     RecountText(content.all);
@@ -61,43 +59,59 @@ function App() {
   const ClearContent = () => {
     RecountText("");
   }
-
+  const SwitchColorTheme = () => {
+    if (theme === dState.lighttheme){
+      setTheme(dState.darktheme);
+    }
+    else {
+      setTheme(dState.lighttheme);
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          build by React
-        </a>
+    <div className="App" style={theme}>
+      <header id="App_header"
+        className="container"
+      >
+        <h1>{dState.project_title}</h1>
+        <p>{dState.project_description}</p>
       </header>
-      <div className="setting">
-        <span onClick={Reset}>
-          Reset
-        </span>
-        <span onClick={Refresh}>
-          Refresh
-        </span>
-        {CheckBoxButton("space", includeSpace, setIncludeSp)}
-        {CheckBoxButton("enter", includeEnter, setIncludeEn)}
-        {CheckBoxButton("punctuation", includePunctuation, setIncludePunc)}
-        {DetailButton("max_length", max_length, handleMaxLength)}
-        {DetailButton("punctuation list", puncList, handlePuncList)}
-      </div>
-      {EditorContainer(content, handleTextInput)}
-      <div className="each_counts">
-        <span>{`current: ${cur_length}`}</span>
-        {Object.keys(each_counts).map(x =>
-          <span key={x}>{x} : {each_counts[x]}</span>
+      <div id="length_container"
+        className="container"
+      >
+        {LengthComponent("current", cur_length)}
+        {LengthComponent("remain", restrict - cur_length)}
+        {LengthComponent(
+          EditBtn("restrict", restrict, dState.restrict, handleRestrict), 
+          restrict
         )}
       </div>
-      <span onClick={ClearContent}>
-          ClearAll
-      </span>
+      {TextContainer(content, handleTextInput, theme.color)}
+      <div id="count_container"
+        className="container"
+      >
+        {Object.keys(each_counts).map(x =>
+          <span
+            className="count"
+            key={x}
+          >
+            {`${x} : ${each_counts[x]}`}
+          </span>
+        )}
+        {EditBtn("symbol list", symbolList, dState.symbolList, handleSymbolList)}
+      </div>
+      <div id="setting_container"
+        className="container"
+      >
+        {CheckBoxBtn("space", include_space, setIncludeSpace)}
+        {CheckBoxBtn("enter", include_enter, setIncludeEnter)}
+        {CheckBoxBtn("symbol", include_symbol, setIncludeSymbol)}
+        {DetailBtn(
+          theme === dState.darktheme ? "dark": "light", 
+          SwitchColorTheme
+        )}
+        {DetailBtn("refresh", Refresh, "btn_primary")}
+        {DetailBtn("clear", ClearContent, "btn_danger")}
+      </div> 
     </div>
   );
 }

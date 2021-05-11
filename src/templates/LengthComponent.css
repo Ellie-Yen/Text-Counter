@@ -1,0 +1,7 @@
+.overflow { 
+  color: var(--seco_color);
+  background: var(--main_color2);
+}
+.length_val { 
+  font-size: var(--big_size);
+}
