@@ -1,7 +1,7 @@
 # Text-Counter
 
 ## A text counter for more flexible demands.
-[live demo link](ellie-yen.github.io/text-counter/)
+[live demo link](https://ellie-yen.github.io/Text-Counter/)
 
 * description:
 Unlike most text counters, this text counter allow you to set restriction of words and decide whether symbols, enter(newline) and space should be counted. 
