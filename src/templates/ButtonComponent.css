@@ -1,91 +1,74 @@
 
-.detailbtn, .msg_btn, .edit_btn, .btn_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -ms-flex-pack: center;
-    -ms-flex-line-pack: center;
-}
-.msg_btn, .edit_btn, .btn_container {
-    flex-flow: row wrap;
-    -ms-flex-flow: row wrap;
-}
-.detailbtn {
-    flex-flow: column wrap;
-    -ms-flex-flow: column wrap;
+.checkbox_btn, .msg_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-/*----------- for detail buttons -----------*/
-.detailbtn * {
-    display: block;
-    padding: 0px 5px;
+/*--------- for toggle btn -------------*/
+[class^="toggle_btn"] {
+  height: max-content;
+  border-radius: var(--big_size);
+  padding: 0 5px;
+  border: 1px solid;
+  cursor: pointer;
 }
-/* blur secondary details */
-.detailbtn small, .detailbtn:hover i {
-    height: 0px;
-    color: transparent;
+[class^="slider"]{
+  display: inline-block;
+  background: var(--dark_fontcolor);
+  transition-duration: 2s;
 }
-.detailbtn:hover small, .detailbtn i {
-    color: inherit;
-    height: auto;
+.toggle_content{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.slider-true {
+  float: left;
+  transform: translateX(-5px);
+}
+.toggle_btn-false {
+  background: var(--main_color1);
+  color: var(--dark_fontcolor);
+}
+.slider-false {
+  float: right;
+  transform: translateX(5px);
 }
 
 /*----------- for checkbox buttons -----------*/
-.checked_false {
-    filter: opacity(0.5);
-}
-/* add strike-line in unchecked button */
-.checked_false::before {
-    content: "\00A0";
-    position: absolute;
-    display: block;
-    line-height: 200%;
-    width: 0px;
-    z-index: 1;
-    transform: rotate(-45deg) translateX(50%);
-    border: 1px solid;
-}
+.checked {color: var(--main_color2);}
 
 /*----------- for msg buttons -----------*/
 /* hide pop msg at initialization */
-.msg {
-    display: none;
-    position: absolute;
-    transform: translateY(-60%);
-    z-index: 2;
+.msg_container {
+  display: none;
+  position: absolute;
+  transform: translateY(100%);
+  z-index: 1;
 }
-.msg_btn:hover .msg {
-    display: inline-block;
-    -webkit-animation: 2s ease 2s 1 normal forwards running fadeOut;
-    -moz-animation: 2s ease 2s 1 normal forwards running fadeOut;
-    animation: 2s ease 2s 1 normal forwards running fadeOut;
+.msg_btn:hover .msg_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  -webkit-animation: 2s ease 2s 1 normal forwards running fadeOut;
+  -moz-animation: 2s ease 2s 1 normal forwards running fadeOut;
+  animation: 2s ease 2s 1 normal forwards running fadeOut;
 }
 /* make it looks like a dialog */
-.msg p {
-    margin: 0;
-    padding: 5px;
-    background: var(--main_color1);
-    color: var(--seco_color);
+.msg{
+  margin: 0;
+  padding: 5px;
+  background: var(--main_color1);
+  color: var(--dark_fontcolor);
 }
-.msg::after {
-    display: block;
-	content: "\00A0";
-	font-size: 0pt;
-    margin: 0 50%;
-	border-style: solid;
-	border-color: var(--main_color1) transparent transparent transparent;
-	border-width: 15px 5px 0px 5px;
-}
-
-/*----------- for edit buttons -----------*/
-.edit_input {
-    position:absolute;
-    transform: translateY(100%);
-    background: var(--main_color1);
-    color: var(--seco_color);
-    border: 1px solid var(--seco_color);
-}
-.btn_container {
-    width: fit-content;
-    gap: 5px;
+.msg_container::before {
+  display: inline-block;
+	content: "\0020";
+  background: var(--main_color1);
+  width: 20px;
+  height: 10px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }

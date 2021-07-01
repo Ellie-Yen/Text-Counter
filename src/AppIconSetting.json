@@ -1,0 +1,10 @@
+{
+  "reset": "bi bi-arrow-counterclockwise",
+  "copy": "bi bi-clipboard",
+  "clear": "bi bi-trash",
+  "edit": "bi bi-sliders",
+  "save": "bi bi-check",
+  "cancel": "bi bi-x",
+  "light mode": "bi bi-sun",
+  "dark mode": "bi bi-moon-fill"
+}

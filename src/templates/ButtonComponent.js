@@ -1,118 +1,53 @@
-import React, { useState } from 'react';
 import './ButtonComponent.css'
 
-const Buttons = {
-    "default setting": "bi bi-arrow-counterclockwise",
-    "refresh": "bi bi-arrow-repeat",
-    "clear": "bi bi-trash",
-    "symbol": "bi bi-asterisk",
-    "space": "bi bi-app",
-    "enter": "bi bi-arrow-return-left",
-    "edit": "bi bi-pencil-square",
-    "save": "bi bi-check-circle",
-    "cancel": "bi bi-x-circle",
-    "light": "bi bi-sun-fill",
-    "dark": "bi bi-moon-fill"
-};
-
-function CheckBoxBtn(name, val, setfunc){
-    const handleClick = ()=> {
-        setfunc(!val);
-    }
-    return (
-        DetailBtn(name, handleClick, `checkboxbtn checked_${val}`)
-    );
+function ToggleBtn(props){
+  // props: func, content, is_toggled
+  // func: function that to display when cliking it
+  // content: string as the button description
+  // is_toggled: bool indicates the status of the button
+  return (
+    <div className={`toggle_btn-${props.is_toggled}`}
+      onClick={props.func}
+    >
+      <span className={`slider-${props.is_toggled} circle btn`}/>
+      <span className={`toggle_content`}>
+        {props.content}
+      </span>
+    </div>
+  );
 }
-function DetailBtn(name, func, additionalcls=""){
-    return (
-        <div className={`btn detailbtn ${additionalcls}`}
-            onClick={func}
-        >
-            <i
-                className={Buttons[name]}
-                onClick={func}
-            />
-            <small>{name}</small>
-        </div>
-    );
+function CheckboxBtn(props){
+  // props: is_checked, content, func
+  // content: string as the button description
+  // func: function that to display when cliking it
+  // is_checked: bool indicates the status of the button
+  return (
+    <div className={`checkbox_btn btn`}
+      onClick={props.func}
+    >
+      <i className={`bi bi-${props.is_checked ? "check-circle-fill checked": "circle"}`}/>
+      {props.content}
+    </div>
+  );
 }
-function EditBtn(name, val, default_val, setfunc){
-    const [editMode, setMode] = useState(false);
-    const refInput = React.useRef(null);
-    const handleChange = ()=> {
-        if (editMode){
-            const res = refInput.current.value;
-            setfunc(res);
-        }
-        setMode(! editMode);
-    }
-    const handleReset = () => {
-        refInput.current.value = default_val;
-    }
-    const handleCancel = () => {
-        setMode(! editMode);
-    }
-    const label = name.replace("_", " ");
-    if (editMode){
-        let editArea = 
-            <textarea id={name}
-                className="edit_input"
-                defaultValue={val}
-                ref={refInput}
-            />
-        ;
-        if (typeof val === "number"){
-            editArea = 
-                <input id={name}
-                    className="edit_input"
-                    type="number"
-                    defaultValue={val}
-                    ref={refInput}
-                />
-            ;
-        }
-        return (
-            <div className="edit_btn">
-                <div className="label">
-                    {label}
-                </div>
-                <div className="btn_container">
-                    {PopMsgBtn("default setting", handleReset)}
-                    {PopMsgBtn("save", handleChange)}
-                    {PopMsgBtn("cancel", handleCancel)}
-                </div>
-                {editArea}
-            </div>
-        );
-    }
-    return (
-        <div className="btn edit_btn"
-            onClick={handleChange}
-        >
-            <div className="label">
-                {label}
-            </div>
-            <i className={Buttons["edit"]}
-                onClick={handleChange}
-            />
-        </div>
-    );
-
-}
-function PopMsgBtn(name, func, additionalcls=""){
-    // use for edit buttons
-    return (
-        <div className={`btn msg_btn ${additionalcls}`}
-            onClick={func}
-        >
-            <i className={Buttons[name]}
-                onClick={func}
-            />
-            <div className="msg">
-                <p><small>{name}</small></p>
-            </div>
-        </div>
-    );
+function PopMsgBtn(props){
+  // props: func, icon_cls_name, msg, btn_style
+  // func: function that to display when cliking it
+  // icon_cls_name: string of bootstrap icon
+  // msg: string as the button description
+  // btn_style: string of additional style of button
+  return (
+    <div className={`btn msg_btn ${props.btn_style || ""}`}
+      onClick={props.func}
+    >
+      <i className={props.icon_cls_name}/>
+      <div className="msg_container">
+        <p className="msg">
+          {props.msg}
+        </p>
+      </div>
+    </div>
+  );
 }
 
-export {CheckBoxBtn, DetailBtn, EditBtn};
+export {CheckboxBtn, ToggleBtn, PopMsgBtn};

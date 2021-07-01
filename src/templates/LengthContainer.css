@@ -1,0 +1,6 @@
+.overflow { 
+  color: var(--danger_color);
+}
+.length_val { 
+  font-size: var(--big_size);
+}

@@ -1,7 +1,8 @@
 {
     "project_title": "Text Counter",
     "project_description": "You can choose whether space, enter or symbols should be count or not.",
-    "restrict": 100,
+    "author_info": "author: Ellie Yen, 2021",
+    "limit": 100,
     "cur_length": 0,
     "content": {
         "all": "", 
@@ -17,8 +18,9 @@
         "enter": 0,
         "symbol": 0
     },
-    "symbolList": "，！？；：（）［］【】。、‧«»,`.:'\";~!?『』「」﹁﹂《…》〈〉[]{}()/*$",
+    "symbol_list": "，！？；：（）［］【】。、‧«»,`.:'\";~!?『』「」﹁﹂《…》〈〉[]{}()/*$",
     "darktheme": {
+        "filter": "grayscale(0.5)",
         "background": "rgb(40, 45, 55)",
         "color": "rgb(180, 189, 199)"
     },

@@ -1,10 +1,12 @@
 :root {
   --main_color1: rgb(46, 101, 182);
-  --main_color2: rgba(235, 94, 148, 0.66);
-  --seco_color: rgb(247, 247, 237);
-  --normal_size: calc(10px + 2vmin);
-  --small_size: calc(6px + 2vmin);
-  --big_size: calc(15px + 2vmin);
+  --main_color2: rgb(38, 157, 194);
+  --main_color3: rgb(109, 124, 151);
+  --danger_color: rgb(241, 131, 103);
+  --dark_fontcolor: rgb(247, 247, 237);
+  --normal_size: calc(10px + 1vmin);
+  --small_size: calc(6px + 1vmin);
+  --big_size: calc(15px + 1vmin);
 }
 @keyframes fadeOut {
   0%{ filter: opacity(0.5); }
@@ -25,42 +27,47 @@ small { font-size: var(--small_size); }
 .App, .container {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between;
-  -ms-flex-flow: row wrap;
-  -ms-flex-pack: distribute;
-  -ms-flex-line-pack: center;
+  justify-content: space-around;
 }
-.App { padding: 20px 20vw; }
-.container { 
+.App {
+  margin: 0;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+.container {
+  align-items: center;
   margin: 5px 0;
-  width: 100%;
   gap: 5px;
+  flex-grow: 1;
+}
+#App_header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: inherit;
+  border-bottom: 1px solid;
 }
 #App_header h1 {
-  color: var(--seco_color);
+  color: var(--dark_fontcolor);
   background: var(--main_color1);
   padding: 5px;
 }
-#App_header p {
-  width: 70%;
-  text-align: justify;
-}
-#setting_container {
-  align-items: stretch;
-  -ms-flex-line-pack: stretch;
-}
-
-
 .btn {
   cursor: pointer;
-  border: 1px solid transparent;
-  outline: 1px solid transparent;
+  transition-duration: 2s;
+  border-radius: 5px;
+  padding: 5px;
 }
-.btn:hover {
-  outline: 1px solid var(--main_color1);
-  border: 1px solid var(--seco_color);
+.btn:hover, .primary, .danger {color: var(--dark_fontcolor);}
+.primary {background: var(--main_color2);}
+.danger {background: var(--danger_color);}
+.btn:hover, .primary:hover, .danger:hover { background: var(--main_color3); }
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--big_size);
+  height: var(--big_size);
+  border-radius: var(--big_size);
+  border: 1px solid;
 }
-.btn_primary:hover, .btn_danger:hover { color: var(--seco_color); }
-.btn_primary:hover { background: var(--main_color1); }
-.btn_danger:hover { background: var(--main_color2); }

@@ -1,27 +1,35 @@
+#text_container {
+  display: grid;
+  grid-template: 1fr/1fr;
+  align-items: stretch;
+  justify-content: stretch;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+  min-height: 80vh;
+}
+/* makes the contents are completely overlapped */
 .text {
-  align-self: stretch;
-  justify-self: stretch;
-  width: calc(60vw - var(--normal_size));
-  background: none;
-  overflow-y: scroll;
+  grid-area: 1/1/1/1;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  overflow-y: hidden;
   text-align: left;
   word-break: break-all;
   font-family: monospace;
   line-height: var(--normal_size);
+  background: none;
+  color:inherit;
+  border: none;
+  outline: none;
 }
 
-/* makes the contents are completely overlapped */
-/* different bc difference between div and text area */
-#true_text {
-  position: absolute;
-  z-index: 1;
-  height: calc(50vh + var(--normal_size));
-  padding: 5px 0px 5px 5px;
-}
-#fake_text {
-  height: 50vh;
-  padding: 5px 5px calc(var(--normal_size) + 5px) 5px;
-}
+#true_text { z-index: 1; }
+#fake_text { filter: opacity(0.5); }
 /* hide content of fake text */
 #fake_text * {
   color: transparent;
@@ -29,7 +37,4 @@
   padding: 0;
 }
 /* highlight setting */
-.overflow_content {
-  background: var(--main_color2);
-  filter: opacity(0.5);
-}
+.overflow_content { background: var(--danger_color); }
